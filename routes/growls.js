@@ -8,6 +8,19 @@ router.use(function (res, req, next) {
     next()
 });
 
+router.use('/:id', function (req, res, next) {
+  Growl.findOne({ '_id': req.params.id }, function (err, todo) {
+    if (err) {
+      res.status(500).send()
+    } else if (!growl) {
+      res.status(404).send()
+    } else {
+      res.growl = growl;
+      next()
+    }
+  })
+})
+
 router.get('/', function (req, res) {
   Growl.find({}, function (err, growls) {
       if (err) {
@@ -29,5 +42,7 @@ router.post('/', function (req, res){
 
   })
 })
+
+router.delete('/:id', )
 
 module.exports = router;

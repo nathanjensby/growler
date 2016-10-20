@@ -9,7 +9,7 @@ var lock = new Auth0Lock('KBoDe6JHtErBVYwfDyubAIku3OlJvMe9', 'nathanjensby.auth0
 lock.on('authenticated', function(authResult) {
   console.log('authResult:', authResult);
   localStorage.setItem('idToken', authResult.idToken);
-  loadGrowls();
+  loadGrowls(authResult);
   $('#btn-logout').show();
 });
 
@@ -51,7 +51,7 @@ function isLoggedIn() {
   }
 };
 
-function loadGrowls() {
+function loadGrowls(authResult) {
   $('#growls').empty();
   $('#btn-login').hide();
   $('#loggedin').show();
@@ -63,12 +63,12 @@ function loadGrowls() {
     }
   }).done(function(data) {
     data.forEach(function(datum) {
-      loadGrowl(datum);
+      loadGrowl(datum, authResult);
     })
   })
 };
 
-function loadGrowl(growl) {
+function loadGrowl(growl, authResult) {
   var li = $('<li />');
   li.text(growl.growl);
   li.data('id', growl._id);
