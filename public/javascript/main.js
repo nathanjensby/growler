@@ -51,7 +51,7 @@ function loadGrowls() {
   $('#loggedin').show();
 
   $.ajax({
-    url: 'https://stormy-oasis-48596.herokuapp.com/growls/'
+    url: 'http://localhost:3000/growls'
   }).done(function(data) {
     data.forEach(function(datum) {
       loadGrowl(datum);
