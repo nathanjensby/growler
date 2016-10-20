@@ -76,13 +76,21 @@ function loadGrowl(growl) {
 
 function newGrowl() {
   growl = $('#growl-text').val();
-
-  $.ajax({method: 'POST', url: 'https://stormy-oasis-48596.herokuapp.com/growls',
-  headers: {
-  'Authorization': 'Bearer '+localStorage.getItem('idToken')},
-  data: {
-    growl: growl
-  }}).done(function() {
-    loadGrowls();
-  })
+  if (growl.length <= 141) {
+    $.ajax({
+      method: 'POST',
+      url: 'https://stormy-oasis-48596.herokuapp.com/growls',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('idToken')
+      },
+      data: {
+        growl: growl
+      }
+    }).done(function(data) {
+      loadGrowls();
+      growl.val('');
+    })
+  } else {
+    alert('Please use 141 characters or less');
+  }
 };
