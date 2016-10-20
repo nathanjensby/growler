@@ -46,18 +46,20 @@ function isLoggedIn() {
   }
 };
 
-loadGrowls() {
+function loadGrowls() {
   $('#btn-login').hide();
   $('#loggedin').show();
 
-  $.ajax({url: 'https://stormy-oasis-48596.herokuapp.com/growls/'}).done(function(data) {
+  $.ajax({
+    url: 'https://stormy-oasis-48596.herokuapp.com/growls/'
+  }).done(function(data) {
     data.forEach(function(datum) {
       loadGrowl(datum);
     })
   })
 };
 
-loadGrowl(growl) {
+function loadGrowl(growl) {
   var li = $('<li />');
   li.text(growl.growl);
   li.data('id', growl._id);
