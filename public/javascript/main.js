@@ -89,7 +89,7 @@ function newGrowl() {
       }
     }).done(function(data) {
       loadGrowls();
-      growl.val('');
+      $('#growl-text').val("");
     })
   } else {
     alert('Please use 141 characters or less');
