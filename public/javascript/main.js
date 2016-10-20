@@ -16,7 +16,7 @@ $(document).ready(function() {
     console.log('authResult:', authResult);
     localStorage.setItem('idToken', authResult.idToken);
     loadGrowls();
-    $('#btn-logout').hide();
+    $('#btn-logout').show();
   });
 
   $('#btn-login').on('click', function(e) {
