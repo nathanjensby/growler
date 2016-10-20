@@ -4,7 +4,7 @@ $.ajaxSetup({
 }});
 
 $(document).ready(function() {
-  var lock = new Auth0Lock('CW21HA9LFBYIm8tKNbzlqNDgd2eawIz6', 'connorzg.auth0.com', {
+  var lock = new Auth0Lock('KBoDe6JHtErBVYwfDyubAIku3OlJvMe9', 'nathanjensby.auth0.com', {
     auth: {
       params: {
         scope: 'openid email'
