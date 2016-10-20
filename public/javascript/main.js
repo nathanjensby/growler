@@ -12,7 +12,6 @@ lock.on('authenticated', function(authResult) {
   localStorage.setItem('user', authResult.idTokenPayload.email.split('@')[0])
 
   loadGrowls();
-  setResult(auth);
   $('#btn-logout').show();
 });
 
