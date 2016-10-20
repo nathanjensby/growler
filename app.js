@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var jwt = require('express-jwt');
 var growls = require('./routes/growls');
+var cors = require(cors())
 
 const mongoose = require('mongoose');
 
