@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var jwt = require('express-jwt');
 var growls = require('./routes/growls');
-var cors = require(cors())
+var cors = require("cors")
 
 const mongoose = require('mongoose');
 
@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors())
 
 app.use('/', routes);
 app.use('/users', users);
