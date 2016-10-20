@@ -43,6 +43,6 @@ router.post('/', function (req, res){
   })
 })
 
-router.delete('/:id', )
+// router.delete('/:id', )
 
 module.exports = router;
