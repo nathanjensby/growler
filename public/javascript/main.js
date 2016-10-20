@@ -57,7 +57,7 @@ function loadGrowls() {
   $('#loggedin').show();
 
   $.ajax({
-    url: 'http://localhost:3000/growls'
+    url: 'https://stormy-oasis-48596.herokuapp.com/growls'
   }).done(function(data) {
     data.forEach(function(datum) {
       loadGrowl(datum);
@@ -75,7 +75,7 @@ function loadGrowl(growl) {
 function newGrowl() {
   growl = $('#growl-text').val();
 
-  $.ajax({method: 'POST', url: 'http://127.0.0.1:3000/growls',
+  $.ajax({method: 'POST', url: 'https://stormy-oasis-48596.herokuapp.com/growls',
   data: {
     growl: growl
   }}).done(function(data) {
