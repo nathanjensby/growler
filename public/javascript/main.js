@@ -27,7 +27,7 @@ $(document).ready(function() {
     console.log('out');
     e.preventDefault();
     logout();
-  })
+  });
 
   $('#new-growl').on('submit', function(e) {
     e.preventDefault();
@@ -36,7 +36,6 @@ $(document).ready(function() {
 
   if (isLoggedIn()) loadGrowls();
   });
-});
 
 function logout() {
   localStorage.removeItem('idToken');
