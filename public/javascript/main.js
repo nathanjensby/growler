@@ -47,6 +47,7 @@ function isLoggedIn() {
 };
 
 function loadGrowls() {
+  $('#growls').empty();
   $('#btn-login').hide();
   $('#loggedin').show();
 
@@ -65,3 +66,14 @@ function loadGrowl(growl) {
   li.data('id', growl._id);
   $('#growls').append(li);
 }
+
+function newStudent() {
+  growl = $('#growl-text').val();
+
+  $.ajax({method: 'POST', url: 'http://127.0.0.1:3000/growls',
+  data: {
+    growl: growl
+  }}).done(function(data) {
+    loadGrowls();
+  })
+};
