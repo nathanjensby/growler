@@ -10,7 +10,7 @@ lock.on('authenticated', function(authResult) {
   console.log('authResult:', authResult);
   localStorage.setItem('idToken', authResult.idToken);
   localStorage.setItem('user', authResult.idTokenPayload.email.split('@')[0])
-)
+
   loadGrowls();
   setResult(auth);
   $('#btn-logout').show();
