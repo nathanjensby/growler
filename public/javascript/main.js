@@ -45,3 +45,7 @@ function isLoggedIn() {
     return false
   }
 };
+
+loadGrowls() {
+  
+}
