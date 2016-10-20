@@ -27,6 +27,7 @@ $(document).ready(function() {
     console.log('out');
     e.preventDefault();
     logout();
+  })
 
   $('#new-growl').on('submit', function(e) {
     e.preventDefault();
@@ -82,7 +83,7 @@ function newGrowl() {
   'Authorization': 'Bearer '+localStorage.getItem('idToken')},
   data: {
     growl: growl
-  }}).done(function(data) {
+  }}).done(function() {
     loadGrowls();
   })
 };
