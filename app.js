@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var jwt = require('express-jwt');
+var growls = require('./routes/growls');
 
 const mongoose = require('mongoose');
 
@@ -35,8 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/growls', jwtCheck);
-app.use('/growls', growls);
+app.use('routes/growls', jwtCheck);
+app.use('routes/growls', growls);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
