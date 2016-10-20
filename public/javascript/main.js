@@ -70,14 +70,14 @@ function loadGrowls(authResult) {
 
 function loadGrowl(growl, authResult) {
   var li = $('<li />');
-  user = authResult.idTokenPayload.email.split('@')[0];
-  li.html(growl.growl + '<br>' + '-' + user);
+  li.html(growl.growl + '<br>' + '-' + growl.user);
   li.data('id', growl._id);
   $('#growls').append(li);
 }
 
 function newGrowl() {
-  growl = $('#growl-text').val();
+  var growl = $('#growl-text').val();
+  var user = authResult.idTokenPayload.email.split('@')[0];
   if (growl.length <= 141) {
     $.ajax({
       method: 'POST',
@@ -86,7 +86,8 @@ function newGrowl() {
         'Authorization': 'Bearer ' + localStorage.getItem('idToken')
       },
       data: {
-        growl: growl
+        growl: growl,
+        user: user
       }
     }).done(function(data) {
       loadGrowls();
