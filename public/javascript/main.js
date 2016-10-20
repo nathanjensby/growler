@@ -70,7 +70,8 @@ function loadGrowls(authResult) {
 
 function loadGrowl(growl, authResult) {
   var li = $('<li />');
-  li.text(growl.growl);
+  user = authResult.idTokenPayload.email.split('@')[0];
+  li.html(growl.growl + '<br>' + '-' + user);
   li.data('id', growl._id);
   $('#growls').append(li);
 }

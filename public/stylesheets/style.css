@@ -6,7 +6,7 @@ body {
 }
 
 ul {
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -15,8 +15,8 @@ li {
   background-color: steelblue;
   color: white;
   font-size: 18px;
-  padding: 10px;
-  margin:10px;
+  padding: 20px;
+  margin: 20px;
 }
 
 a {
