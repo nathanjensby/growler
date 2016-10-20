@@ -1,23 +1,19 @@
-// $.ajaxSetup({
-//   headers: {
-//   'Authorization': 'Bearer '+localStorage.getItem('idToken')
-// }});
+var lock = new Auth0Lock('KBoDe6JHtErBVYwfDyubAIku3OlJvMe9', 'nathanjensby.auth0.com', {
+  auth: {
+    params: {
+      scope: 'openid email'
+    }
+  }
+});
+
+lock.on('authenticated', function(authResult) {
+  console.log('authResult:', authResult);
+  localStorage.setItem('idToken', authResult.idToken);
+  loadGrowls();
+  $('#btn-logout').show();
+});
 
 $(document).ready(function() {
-  var lock = new Auth0Lock('KBoDe6JHtErBVYwfDyubAIku3OlJvMe9', 'nathanjensby.auth0.com', {
-    auth: {
-      params: {
-        scope: 'openid email'
-      }
-    }
-  });
-
-  lock.on('authenticated', function(authResult) {
-    console.log('authResult:', authResult);
-    localStorage.setItem('idToken', authResult.idToken);
-    loadGrowls();
-    $('#btn-logout').show();
-  });
 
   $('#btn-login').on('click', function(e) {
     e.preventDefault();
@@ -35,8 +31,10 @@ $(document).ready(function() {
     newGrowl();
   })
 
-  if (isLoggedIn()) loadGrowls();
-  });
+  if (isLoggedIn())
+    loadGrowls();
+  }
+);
 
 function logout() {
   localStorage.removeItem('idToken');
@@ -46,6 +44,7 @@ function logout() {
 function isLoggedIn() {
   var token = localStorage.getItem('idToken');
   if (token) {
+    $('#btn-logout').show();
     return true
   } else {
     return false
@@ -60,7 +59,8 @@ function loadGrowls() {
   $.ajax({
     url: 'https://stormy-oasis-48596.herokuapp.com/growls',
     headers: {
-    'Authorization': 'Bearer '+localStorage.getItem('idToken')}
+      'Authorization': 'Bearer ' + localStorage.getItem('idToken')
+    }
   }).done(function(data) {
     data.forEach(function(datum) {
       loadGrowl(datum);
