@@ -1,7 +1,7 @@
-$.ajaxSetup({
-  headers: {
-  'Authorization': 'Bearer '+localStorage.getItem('idToken')
-}});
+// $.ajaxSetup({
+//   headers: {
+//   'Authorization': 'Bearer '+localStorage.getItem('idToken')
+// }});
 
 $(document).ready(function() {
   var lock = new Auth0Lock('KBoDe6JHtErBVYwfDyubAIku3OlJvMe9', 'nathanjensby.auth0.com', {
@@ -57,7 +57,9 @@ function loadGrowls() {
   $('#loggedin').show();
 
   $.ajax({
-    url: 'https://stormy-oasis-48596.herokuapp.com/growls'
+    url: 'https://stormy-oasis-48596.herokuapp.com/growls',
+    headers: {
+    'Authorization': 'Bearer '+localStorage.getItem('idToken')}
   }).done(function(data) {
     data.forEach(function(datum) {
       loadGrowl(datum);
@@ -76,6 +78,8 @@ function newGrowl() {
   growl = $('#growl-text').val();
 
   $.ajax({method: 'POST', url: 'https://stormy-oasis-48596.herokuapp.com/growls',
+  headers: {
+  'Authorization': 'Bearer '+localStorage.getItem('idToken')},
   data: {
     growl: growl
   }}).done(function(data) {
