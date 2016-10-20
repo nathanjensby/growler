@@ -8,6 +8,7 @@ body {
 ul {
   max-width: 300px;
   text-align: left;
+  margin: 0 auto;
 }
 
 a {
