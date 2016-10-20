@@ -9,7 +9,12 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var mongoose = require('mongoose');
+
 var app = express();
+
+mongoose.connect(process.env.DB_CONN);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
