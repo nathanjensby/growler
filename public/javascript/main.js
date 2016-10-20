@@ -28,7 +28,7 @@ $(document).ready(function() {
     e.preventDefault();
     logout();
 
-  $('#growl-submit').on('click', function(e) {
+  $('#new-growl').on('submit', function(e) {
     e.preventDefault();
     newGrowl();
   })
