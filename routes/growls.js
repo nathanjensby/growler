@@ -17,3 +17,15 @@ router.get('/', function (req, res) {
       }
   })
 })
+
+router.post('/', function (req, res){
+  var growl = new Growl(req.body)
+  growl.save(function (err) {
+    if (err) {
+        res.status(500).send()
+    } else {
+      res.json(growl)
+    }
+
+  })
+})
