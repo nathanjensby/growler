@@ -28,6 +28,11 @@ $(document).ready(function() {
     e.preventDefault();
     logout();
 
+  $('#growl-submit').on('click', function(e) {
+    e.preventDefault();
+    newGrowl();
+  })
+
   if (isLoggedIn()) loadGrowls();
   });
 });
@@ -67,7 +72,7 @@ function loadGrowl(growl) {
   $('#growls').append(li);
 }
 
-function newStudent() {
+function newGrowl() {
   growl = $('#growl-text').val();
 
   $.ajax({method: 'POST', url: 'http://127.0.0.1:3000/growls',
