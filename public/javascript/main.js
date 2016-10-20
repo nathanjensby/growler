@@ -9,7 +9,10 @@ var lock = new Auth0Lock('KBoDe6JHtErBVYwfDyubAIku3OlJvMe9', 'nathanjensby.auth0
 lock.on('authenticated', function(authResult) {
   console.log('authResult:', authResult);
   localStorage.setItem('idToken', authResult.idToken);
-  loadGrowls(authResult);
+  localStorage.setItem('user', authResult.idTokenPayload.email.split('@')[0])
+)
+  loadGrowls();
+  setResult(auth);
   $('#btn-logout').show();
 });
 
@@ -51,7 +54,7 @@ function isLoggedIn() {
   }
 };
 
-function loadGrowls(authResult) {
+function loadGrowls() {
   $('#growls').empty();
   $('#btn-login').hide();
   $('#loggedin').show();
@@ -63,12 +66,12 @@ function loadGrowls(authResult) {
     }
   }).done(function(data) {
     data.forEach(function(datum) {
-      loadGrowl(datum, authResult);
+      loadGrowl(datum);
     })
   })
 };
 
-function loadGrowl(growl, authResult) {
+function loadGrowl(growl) {
   var li = $('<li />');
   li.html(growl.growl + '<br>' + '-' + growl.user);
   li.data('id', growl._id);
@@ -77,7 +80,6 @@ function loadGrowl(growl, authResult) {
 
 function newGrowl() {
   var growl = $('#growl-text').val();
-  var user = authResult.idTokenPayload.email.split('@')[0];
   if (growl.length <= 141) {
     $.ajax({
       method: 'POST',
@@ -87,7 +89,7 @@ function newGrowl() {
       },
       data: {
         growl: growl,
-        user: user
+        user: localStorage.getItem("user")
       }
     }).done(function(data) {
       loadGrowls();
